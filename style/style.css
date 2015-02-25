@@ -1,0 +1,160 @@
+img {
+	border: 0;
+	vertical-align: text-bottom;
+}
+img.members {
+    height: 30px;
+	border-radius: 2px;
+	vertical-align: middle;
+	padding-right: 2px;
+}
+select {
+	vertical-align: baseline;
+	font-size: 8pt;
+	height: 20px;
+	padding: 0px 0px 0px 5px;
+}
+/*************
+Default Theme
+*************/
+/* overall */
+.tablesorter-default {
+	width: 100%;
+	font: 8pt Arial, Sans-serif;
+	margin: 10px 0 15px;
+	text-align: left;
+	background-color: #CDCDCD;
+	white-space: nowrap;
+	border-collapse:separate;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    padding: 2px;
+}
+
+/* header */
+.tablesorter-default th,
+.tablesorter-default thead td {
+	background-color: #FFFFFF;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+.tablesorter-default tfoot th,
+.tablesorter-default tfoot td {
+	background-color: #FFFFFF;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+.tablesorter-default .header,
+.tablesorter-default .tablesorter-header {
+	background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
+	background-repeat: no-repeat;
+	background-position: right top;
+	cursor: pointer;
+	color:  #000000;
+	vertical-align: middle;
+}
+.tablesorter-default thead .headerSortUp,
+.tablesorter-default thead .tablesorter-headerSortUp,
+.tablesorter-default thead .tablesorter-headerAsc {
+	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+	z-index: -1;	
+}
+.tablesorter-default thead .headerSortDown,
+.tablesorter-default thead .tablesorter-headerSortDown,
+.tablesorter-default thead .tablesorter-headerDesc {
+	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+	z-index: -1;
+}
+.tablesorter-default thead .sorter-false {
+	background-image: none;
+	cursor: default;
+	padding: 4px;
+}
+
+/* tfoot */
+.tablesorter-default tfoot .tablesorter-headerSortUp,
+.tablesorter-default tfoot .tablesorter-headerSortDown,
+.tablesorter-default tfoot .tablesorter-headerAsc,
+.tablesorter-default tfoot .tablesorter-headerDesc {
+	border-top: #000 2px solid;
+}
+
+/* tbody */
+.tablesorter-default td {
+	background-color: #fff;
+	padding: 4px;
+	vertical-align: top;
+	vertical-align: middle;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	-moz-binding:url(ellipsis-xbl.xml#ellipsis);
+}
+.tablesorter-default td .rank{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* Zebra Widget - row alternating colors */
+.tablesorter-default tr.odd td {
+	background-color: #ebebeb;
+}
+.tablesorter-default tr.even td {
+	background-color: #FFF;
+}
+
+/* ajax error row */
+.tablesorter .tablesorter-errorRow td {
+	cursor: pointer;
+	background-color: #e6bf99;
+}
+
+/* pager wrapper, div */
+.tablesorter-pager {
+	margin: auto;
+	width: 40%;
+	font-size: 8pt;
+}
+/* pager wrapper, in thead/tfoot */
+td.tablesorter-pager {
+	background-color: #e6eeee;
+	margin: 0; /* needed for bootstrap .pager gets a 18px bottom margin */
+}
+/* pager navigation arrows */
+.tablesorter-pager img {
+	vertical-align: middle;
+	margin-right: 2px;
+	cursor: pointer;
+}
+
+/* pager output text */
+.tablesorter-pager .pagedisplay {
+	padding: 0 5px 0 5px;
+	width: auto;
+	white-space: nowrap;
+	text-align: center;
+}
+
+/* pager element reset (needed for bootstrap) */
+.tablesorter-pager select {
+	margin: 0;
+	padding: 0;
+}
+
+/*** css used when "updateArrows" option is true ***/
+/* the pager itself gets a disabled class when the number of rows is less than the size */
+.tablesorter-pager.disabled {
+	display: none;
+}
+/* hide or fade out pager arrows when the first or last row is visible */
+.tablesorter-pager .disabled {
+	/* visibility: hidden */
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	cursor: default;
+}
