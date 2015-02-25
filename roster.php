@@ -77,6 +77,7 @@ print "<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
 		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.pager.min.js'></script>";
 ?>
 <script type='text/javascript'>
+	var $jq = jQuery.noConflict();
 	$(document).ready(function () {
 		$('table').show();
 		$('table').tablesorter({
