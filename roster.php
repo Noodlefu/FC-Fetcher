@@ -78,13 +78,13 @@ print "<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
 ?>
 <script type='text/javascript'>
 	var $jq = jQuery.noConflict();
-	$(document).ready(function () {
-		$('table').show();
-		$('table').tablesorter({
+	$jq(document).ready(function () {
+		$jq('table').show();
+		$jq('table').tablesorter({
 			widgets: ['zebra', 'columns'],
 			sortInitialOrder: "desc"
 		}).tablesorterPager({
-			container: $(".pager"),
+			container: $jq(".pager"),
 			output: '{startRow} to {endRow} ({totalRows})',
 			size: <? echo $perPage; ?>,
 			removeRows: true
