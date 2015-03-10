@@ -11,8 +11,6 @@ $db_port = ""; // can be left blank if default (3306)
 $perPage = 30;
 // Fetch the id below from Lodestone : http://na.finalfantasyxiv.com/lodestone/freecompany/9232379236109517808/
 $fc_id = "9232379236109517808";
-// Server your FC resides on
-$server = "Leviathan";
 // Add translation below, example ($classes_fr...)
 $classes_en = array("gladiator","pugilist","marauder","lancer","archer","rogue","conjurer","thaumaturge","arcanist","carpenter","blacksmith","armorer","goldsmith","leatherworker","weaver","alchemist","culinarian","miner","botanist","fisher");
 $classes = $classes_en;
