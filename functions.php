@@ -1,6 +1,23 @@
 <?php
 include('config.php');
 
+function pager( $rows )
+{
+print "<div class='pager'> 
+        <img src='".curPageURL()."style/first.png' class='first'/> 
+        <img src='".curPageURL()."style/prev.png' class='prev'/> 
+        <span class='pagedisplay'></span>
+        <img src='".curPageURL()."style/next.png' class='next'/> 
+        <img src='".curPageURL()."style/last.png' class='last'/> 
+        <select class='pagesize' title='Select page size'>";
+        for ( $i=10; $i<=ceil($rows / 10) * 10; $i=$i+10 )
+			echo "<option value='$i'>$i</option>";
+			
+        print "</select>
+        <select class='gotoPage' title='Select page number'></select>
+</div>";
+}
+
 function curPageURL()
 {
 	$pageURL = 'http';

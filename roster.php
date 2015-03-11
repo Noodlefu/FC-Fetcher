@@ -14,20 +14,8 @@ $rows = intval( $obj->n );
 unset( $obj );
 unset( $res );
 
-print "	<link rel='stylesheet' type='text/css' href='".curPageURL()."style/style.css?26'>
-		<div class='pager'> 
-        <img src='".curPageURL()."/style/first.png' class='first'/> 
-        <img src='".curPageURL()."/style/prev.png' class='prev'/> 
-        <span class='pagedisplay'></span>
-        <img src='".curPageURL()."/style/next.png' class='next'/> 
-        <img src='".curPageURL()."/style/last.png' class='last'/> 
-        <select class='pagesize' title='Select page size'>";
-        for ( $i=10; $i<=ceil($rows / 10) * 10; $i=$i+10 )
-			echo "<option value='$i'>$i</option>";
-			
-        print "</select>
-        <select class='gotoPage' title='Select page number'></select>
-</div>";
+print "<link rel='stylesheet' type='text/css' href='".curPageURL()."style/style.css?26'>";
+pager( $rows );
 echo "<table class='tablesorter'><thead><tr><th>Name</th><th>Rank</th>";
 
 // Generate table headers (this is also a decent place to fill our max values, there's no point doing a for loop twice)
@@ -86,25 +74,13 @@ print "<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
 		}).tablesorterPager({
 			container: $jq(".pager"),
 			output: '{startRow} to {endRow} ({totalRows})',
-			size: <? echo $perPage; ?>,
+			size: <?php echo $perPage; ?>,
 			removeRows: true
 		});
 	});
 </script>
-<?
-print "<div class='pager'> 
-        <img src='".curPageURL()."/style/first.png' class='first'/> 
-        <img src='".curPageURL()."/style/prev.png' class='prev'/> 
-        <span class='pagedisplay'></span>
-        <img src='".curPageURL()."/style/next.png' class='next'/> 
-        <img src='".curPageURL()."/style/last.png' class='last'/> 
-        <select class='pagesize' title='Select page size'>";
-        for ( $i=10; $i<=ceil($rows / 10) * 10; $i=$i+10 )
-			echo "<option value='$i'>$i</option>";
-			
-        print "</select>
-        <select class='gotoPage' title='Select page number'></select>
-</div>";
+<?php
+pager( $rows );
 closeDBConnection( $mysqli );
 LOG_STATUS( "DEBUG", "Peak memory usage: ".formatBytes( memory_get_peak_usage ( false ) ) );
 endTime();
