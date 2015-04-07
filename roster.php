@@ -1,3 +1,7 @@
+<!-- Check if jQuery has been loaded... -->
+<script>
+	window.jQuery || document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"><\/script>')
+</script>
 <?php
 include('config.php');
 include('functions.php');
@@ -13,8 +17,10 @@ $obj = $res->fetch_object();
 $rows = intval( $obj->n );
 unset( $obj );
 unset( $res );
-
-print "<link rel='stylesheet' type='text/css' href='".curPageURL()."style/style.css?26'>";
+print "<link rel='stylesheet' type='text/css' href='".curPageURL()."style/style.css'>
+		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.min.js'></script>
+		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.widgets.min.js'></script>
+		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.pager.min.js'></script>";
 pager( $rows );
 echo "<table class='tablesorter'><thead><tr><th>Name</th><th>Rank</th>";
 
@@ -43,7 +49,7 @@ if ( $result = $mysqli->query( $query ) )
 	while ( $row = $result->fetch_row() )
 	{
 		echo "<tr>";
-		echo "<td width='20%' title='".$row[1]."'><img class='members' src='".$row[2]."'/> <a href=http://eu.finalfantasyxiv.com/lodestone/character/".$row[0]."/ target=_blank>".$row[1]."</a></td>";
+		echo "<td width='20%' title='".$row[1]."' style='text-align: left;'><img class='members' src='".$row[2]."'/> <a href=http://eu.finalfantasyxiv.com/lodestone/character/".$row[0]."/ target=_blank>".$row[1]."</a></td>";
 		echo "<td>".$row[3]."</td>";
 		for ( $i=0; $i<sizeof( $row )-4; $i++ )
 		{
@@ -59,29 +65,20 @@ else
 	die( $mysqli->error );
 
 echo "</tbody></table>";
-print "<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.min.js'></script>
-		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.widgets.min.js'></script>
-		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.pager.min.js'></script>";
-?>
-<script type='text/javascript'>
-	var $jq = jQuery.noConflict();
-	$jq(document).ready(function () {
-		$jq('table').show();
-		$jq('table').tablesorter({
-			widgets: ['zebra', 'columns'],
-			sortInitialOrder: "desc"
-		}).tablesorterPager({
-			container: $jq(".pager"),
-			output: '{startRow} to {endRow} ({totalRows})',
-			size: <?php echo $perPage; ?>,
-			removeRows: true
-		});
-	});
-</script>
-<?php
+
 pager( $rows );
 closeDBConnection( $mysqli );
 LOG_STATUS( "DEBUG", "Peak memory usage: ".formatBytes( memory_get_peak_usage ( false ) ) );
 endTime();
 ?>
+<script type='text/javascript'>
+	jQuery('table').tablesorter({
+		widgets: ['zebra', 'columns'],
+		sortInitialOrder: "desc"
+	}).tablesorterPager({
+		container: jQuery(".pager"),
+		output: '{startRow} to {endRow} ({totalRows})',
+		size: <?php echo $perPage; ?>,
+		removeRows: true
+	});
+</script>

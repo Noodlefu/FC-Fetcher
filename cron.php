@@ -45,7 +45,7 @@ if ( $FreeCompany != NULL )
 		$sql_columns = "id,name,rank";
 		$sql_values = "$id,\"$name\",\"$rank\"";
 		
-		for ( $i = 0; $i <= 18; $i++ )
+		for ( $i = 0; $i < count( $ClassJobs ); $i++ )
 		{
 			$sql_columns .= ",".$ClassJobs[$i]["class"];
 			if ( $ClassJobs[$i]["level"] != "-" )
