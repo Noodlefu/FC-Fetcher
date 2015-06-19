@@ -2,6 +2,7 @@
 Live demo @ www.legionofhalone.com/roster
 
 **viion's XIVPads-LodestoneAPI used for parsing Lodestone (for license info and more see https://github.com/viion/XIVPads-LodestoneAPI).**
+**Many personal thanks to viion and the contributors for making things like this possible.**
 
 
 ## Requirements
@@ -19,6 +20,12 @@ Live demo @ www.legionofhalone.com/roster
 - Setup a cron job for cron.php. I'd suggest renaming this so people can't go to your site and simply look for cron.php and execute it over and over. More in notes below.
 - Include roster.php into whatever page you require!
 
+## Updating from previous installation
+
+- Replace database schema.
+- Replace all files (make a note to backup your previous installation).
+- Re-enter config.php information.
+
 ## Notes
 
 - I use the Wordpress plugin "Allow PHP in Posts and Pages" to import this into a Wordpress site, with this you can simply write [php]include 'roster.php';[/php] into a page or post. If you upload the files into the root of your Wordpress install, the roster will appear.
@@ -27,5 +34,5 @@ Live demo @ www.legionofhalone.com/roster
 - If you want to output to a log instead, view the top function in functions.php. The default simply prints debug messages on runtime, whereas log will do it whenever anyone views it. WARNING : log sizes can become large very quickly if you enable the option to output to file and forget about it!
 
 **License**
-- MIT License : Copyright (c) 2014 Jack Wallace
+- MIT License : Copyright (c) 2015 Jack Wallace
 - You may: use, redistribute, modify, share, collaborate, change spaces to tabs, so long as the comment license stays intack at the top. IF YOU MAKE MODIFICATIONS please add your contribution details (name/git handle) in the readme.

@@ -27,10 +27,10 @@ echo "<table class='tablesorter'><thead><tr><th>Name</th><th>Rank</th>";
 // Generate table headers (this is also a decent place to fill our max values, there's no point doing a for loop twice)
 for ( $i=0; $i<sizeof( $classes ); $i++ )
 {
-	echo "<th title=".ucwords( $classes[$i] )."><img src=".curPageURL().$classimg[$i]."></th>";
+	echo "<th title='".ucwords( $classes[$i] )."'><img src=".curPageURL().$classimg[$i]."></th>";
 	
 	// Max query and array storage
-	$query = "SELECT MAX( ".$classes[$i]." ) AS n FROM classinfo";
+	$query = "SELECT MAX( `".$classes[$i]."` ) AS n FROM classinfo";
 	$res = $mysqli->query( $query );
 	if( !$res )
 		die( $mysqli->error );
@@ -68,7 +68,6 @@ echo "</tbody></table>";
 
 pager( $rows );
 closeDBConnection( $mysqli );
-LOG_STATUS( "DEBUG", "Peak memory usage: ".formatBytes( memory_get_peak_usage ( false ) ) );
 endTime();
 ?>
 <script type='text/javascript'>
