@@ -22,22 +22,22 @@ print "<link rel='stylesheet' type='text/css' href='".curPageURL()."style/style.
 		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.widgets.min.js'></script>
 		<script type='text/javascript' src='".curPageURL()."lib/jquery.tablesorter.pager.min.js'></script>";
 pager( $rows );
-echo "<table class='tablesorter'><thead><tr><th>Name</th><th>Rank</th>";
+echo "<table class='tablesorter'><thead><tr><th width='20%'>Name</th><th width='5%'>Rank</th>";
 
 // Generate table headers (this is also a decent place to fill our max values, there's no point doing a for loop twice)
-for ( $i=0; $i<sizeof( $classes ); $i++ )
+foreach( $classes as $data )
 {
-	echo "<th title='".ucwords( $classes[$i] )."'><img src=".curPageURL().$classimg[$i]."></th>";
-	
-	// Max query and array storage
-	$query = "SELECT MAX( `".$classes[$i]."` ) AS n FROM classinfo";
-	$res = $mysqli->query( $query );
-	if( !$res )
-		die( $mysqli->error );
-	$obj = $res->fetch_object();
-	$values[$i] = intval( $obj->n );
-	unset( $obj );
-	unset( $res );
+		echo "<th class='".$data['type']."' title='".ucwords( $data['name'] )."'><img src=".curPageURL().$data['image']."></th>";
+		
+		//Max query and array storage
+		$query = "SELECT MAX( `".$data['name']."` ) AS n FROM classinfo";
+		$res = $mysqli->query( $query );
+		if( !$res )
+			die( $mysqli->error );
+		$obj = $res->fetch_object();
+		$values[$data['name']] = intval( $obj->n );
+		unset( $obj );
+		unset( $res );
 }
 echo "</tr></thead><tbody>";
 
@@ -46,19 +46,18 @@ $query = "SELECT * FROM classinfo";
 if ( $result = $mysqli->query( $query ) )
 {
 	// We have our result, generate our table data
-	while ( $row = $result->fetch_row() )
+	foreach( $result as $row )
 	{
-		echo "<tr>";
-		echo "<td width='20%' title='".$row[1]."' style='text-align: left;'><img class='members' src='".$row[2]."'/> <a href=http://eu.finalfantasyxiv.com/lodestone/character/".$row[0]."/ target=_blank>".$row[1]."</a></td>";
-		echo "<td>".$row[3]."</td>";
-		for ( $i=0; $i<sizeof( $row )-4; $i++ )
+		print "<tr>
+		<td width='20%' title='".$row['name']."' style='text-align: left;'><img class='members' src='".$row['avatar_url']."'/> <a href=http://eu.finalfantasyxiv.com/lodestone/character/".$row['id']."/ target=_blank>".$row['name']."</a></td>
+		<td>".$row['rank']."</td>";
+		foreach( $classes as $data )
 		{
-			$row[$i+4] == $values[$i] ?	$num = "<b>".$row[$i+4]."</b>" : $num = $row[$i+4];
-			echo "<td class=".$classes[$i]." style='text-align: center;'>$num</td>";
+			$row[$data['name']] == $values[$data['name']] ?	$num = "<b>".$row[$data['name']]."</b>" : $num = $row[$data['name']];
+			echo "<td class=".$data['name']." style='text-align: center;'>$num</td>";
 		}
 		echo "</tr>";
 	}
-
 	unset( $result );
 }
 else
