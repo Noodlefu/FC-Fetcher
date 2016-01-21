@@ -28,9 +28,19 @@ Live demo @ www.legionofhalone.com/roster
 
 ## Notes
 
-- I use the Wordpress plugin "Allow PHP in Posts and Pages" to import this into a Wordpress site, with this you can simply write [php]include 'roster.php';[/php] into a page or post. If you upload the files into the root of your Wordpress install, the roster will appear.
 - The appearance of the table is controlled entirely by style.css. All changes to the table in regards to image size, etc, are done through this.
 - If you want to enable debug messages, change the "$debug = false;" line in config.php to true. This will output information that is useful to troubleshoot what's going on/wrong.
+- To get this to appear in Wordpress, I edit my own theme's functions.php (found in content/themes/xxx/functions.php - add one if it's not there if you like), and add the following code and then use [phpinclude]roster.php[/phpinclude]:
+
+```php
+function phpinclude_func( $atts , $content = null ) {
+	if ( !is_null( $content ) && file_exists( ABSPATH . '../' . $content ) )
+		include( ABSPATH . '../' . $content );
+	else
+		echo "File not found.";
+}
+add_shortcode( 'phpinclude', 'phpinclude_func' );
+```
 
 **License**
 - MIT License : Copyright (c) 2015 Jack Wallace
